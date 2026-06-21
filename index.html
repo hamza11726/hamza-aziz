@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamza Aziz | Full Stack Laravel Developer Portfolio</title>
+    <meta name="description" content="Professional portfolio of Hamza Aziz, a Full Stack Laravel Developer specializing in scalable web applications, REST APIs, and modern ecosystem integrations.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* Strict Semantic Design Tokens System */
+        :root[data-theme="dark"] {
+            --primary: #F28123;
+            --primary-rgb: 242, 129, 35;
+            --bg-main: #0F172A;
+            --bg-body-rgb: 15, 23, 42;
+            --bg-card: rgba(30, 41, 59, 0.7);
+            --bg-card-hover: rgba(51, 65, 85, 0.8);
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --border-glass-hover: rgba(242, 129, 35, 0.4);
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --nav-bg: rgba(15, 23, 42, 0.8);
+            --shadow-sm: rgba(0, 0, 0, 0.3);
+            --shadow-lg: rgba(0, 0, 0, 0.5);
+            --badge-bg: rgba(242, 129, 35, 0.15);
+            --timeline-line: rgba(255, 255, 255, 0.1);
+        }
+
+        :root[data-theme="light"] {
+            --primary: #F28123;
+            --primary-rgb: 242, 129, 35;
+            --bg-main: #FAFAFA;
+            --bg-body-rgb: 250, 250, 250;
+            --bg-card: rgba(255, 255, 255, 0.85);
+            --bg-card-hover: rgba(255, 255, 255, 1);
+            --border-glass: rgba(0, 0, 0, 0.08);
+            --border-glass-hover: rgba(242, 129, 35, 0.5);
+            --text-main: #1E293B;
+            --text-muted: #64748B;
+            --nav-bg: rgba(250, 250, 250, 0.85);
+            --shadow-sm: rgba(0, 0, 0, 0.05);
+            --shadow-lg: rgba(242, 129, 35, 0.1);
+            --badge-bg: rgba(242, 129, 35, 0.1);
+            --timeline-line: rgba(0, 0, 0, 0.1);
+        }
+
+        /* Base Reset & Transition Engine */
+        * {
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* Preloader */
+        #preloader {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg-main); z-index: 9999;
+            display: flex; justify-content: center; align-items: center;
+        }
+        .spinner {
+            width: 50px; height: 50px;
+            border: 3px solid rgba(var(--primary-rgb), 0.2);
+            border-radius: 50%; border-top-color: var(--primary);
+            animation: spin 1s ease-in-out infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Scroll Progress Bar */
+        #scroll-progress {
+            position: fixed; top: 0; left: 0; height: 4px;
+            background: var(--primary); z-index: 10000; width: 0%;
+        }
+
+        /* Universal Glassmorphic Container Architecture */
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px var(--shadow-sm);
+            color: var(--text-main);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .glass-card:hover {
+            transform: translateY(-5px);
+            background: var(--bg-card-hover);
+            border-color: var(--border-glass-hover);
+            box-shadow: 0 20px 25px -5px var(--shadow-lg);
+        }
+
+        /* Explicit Typography System overrides */
+        h1, h2, h3, h4, h5, h6, .navbar-brand {
+            color: var(--text-main) !important;
+        }
+        p, .text-muted, label {
+            color: var(--text-muted) !important;
+        }
+
+        /* Custom Button Core Logic */
+        .btn-custom {
+            background: var(--primary);
+            color: #FFFFFF !important; 
+            border: 1px solid var(--primary);
+            padding: 10px 28px; border-radius: 8px;
+            font-weight: 500; transition: all 0.3s ease;
+        }
+        .btn-custom:hover {
+            background: transparent; color: var(--primary) !important;
+        }
+        .btn-outline-custom {
+            background: transparent; color: var(--text-main) !important;
+            border: 1px solid var(--border-glass);
+            padding: 10px 28px; border-radius: 8px;
+            font-weight: 500; transition: all 0.3s ease;
+        }
+        .btn-outline-custom:hover {
+            border-color: var(--primary); color: var(--primary) !important;
+            background-color: rgba(var(--primary-rgb), 0.05);
+        }
+
+        /* Sticky Navigation Bar Module */
+        .navbar {
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-glass);
+            background-color: var(--nav-bg) !important;
+        }
+        .nav-link {
+            color: var(--text-main) !important;
+            font-weight: 500; margin: 0 10px;
+            position: relative;
+        }
+        .nav-link::after {
+            content: ''; position: absolute; width: 0; height: 2px;
+            bottom: -5px; left: 0; background-color: var(--primary);
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+        .navbar-toggler {
+            color: var(--text-main) !important;
+            border: 1px solid var(--border-glass) !important;
+        }
+
+        /* Hero Layout Components */
+        .hero-section {
+            min-height: 100vh;
+            display: flex; align-items: center;
+            position: relative; padding-top: 100px;
+        }
+        .hero-img-wrapper {
+            position: relative; display: inline-block;
+        }
+        .hero-img-wrapper::before {
+            content: ''; position: absolute;
+            top: -15px; left: -15px; right: 15px; bottom: 15px;
+            border: 3px solid var(--primary); border-radius: 20px;
+            z-index: -1;
+        }
+        .hero-img {
+            border-radius: 20px; object-fit: cover;
+            box-shadow: 0 20px 40px var(--shadow-sm);
+        }
+
+        /* Adaptive Experience Timeline Layout */
+        .timeline {
+            position: relative; border-left: 2px solid var(--timeline-line);
+            padding-left: 30px; margin-left: 15px;
+        }
+        .timeline-item { position: relative; margin-bottom: 40px; }
+        .timeline-item::before {
+            content: ''; position: absolute; width: 16px; height: 16px;
+            background: var(--primary); border-radius: 50%;
+            left: -39px; top: 5px;
+            box-shadow: 0 0 0 4px rgba(var(--primary-rgb), 0.2);
+        }
+
+        /* Project Filtering Mechanism */
+        .filter-btn {
+            background: transparent; border: 1px solid var(--border-glass);
+            color: var(--text-muted); padding: 8px 22px;
+            border-radius: 30px; font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #FFFFFF !important;
+        }
+
+        /* Universal Badges */
+        .custom-badge {
+            background-color: var(--badge-bg) !important;
+            color: var(--primary) !important;
+            border: 1px solid rgba(var(--primary-rgb), 0.2);
+            padding: 6px 14px; border-radius: 6px;
+            font-size: 0.85rem; font-weight: 500;
+        }
+
+        /* Modern Connect Card Specifics */
+        .connect-icon-box {
+            width: 70px; height: 70px;
+            background: rgba(var(--primary-rgb), 0.1);
+            border: 1px solid rgba(var(--primary-rgb), 0.2);
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.8rem; color: var(--primary);
+            margin-bottom: 24px;
+            transition: all 0.4s ease;
+        }
+        .glass-card:hover .connect-icon-box {
+            background: var(--primary);
+            color: #FFFFFF;
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* Tech Header Accents */
+        .text-gradient {
+            background: linear-gradient(45deg, var(--text-main), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .section-title { font-weight: 700; margin-bottom: 15px; text-align: center; }
+        .section-subtitle { max-width: 650px; margin: 0 auto 50px auto; text-align: center; font-size: 1.1rem; }
+        
+        #back-to-top {
+            position: fixed; bottom: 30px; right: 30px;
+            display: none; z-index: 99; border: none;
+            background-color: var(--primary); color: #FFFFFF;
+            padding: 12px 16px; border-radius: 8px;
+        }
+
+        /* Dynamic Progress Trackers */
+        .progress {
+            background-color: var(--border-glass) !important;
+            border-radius: 4px; overflow: hidden;
+        }
+
+        /* AI Section Futuristic Accent System */
+        .ai-card {
+            position: relative;
+            overflow: hidden;
+        }
+        .ai-card:hover {
+            border-color: var(--primary) !important;
+        }
+        .ai-icon-box {
+            width: 60px;
+            height: 60px;
+            background: rgba(147, 51, 2 purple, 0.1);
+            border: 1px solid rgba(147, 51, 234, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            color: var(--primary); /* Distinct AI Purple Accent */
+            margin-bottom: 20px;
+            transition: all 0.4s ease;
+        }
+        .glass-card:hover .ai-icon-box {
+            background: var(--primary);
+            color: #FFFFFF;
+            transform: scale(1.1) rotate(8deg);
+        }
+        .ai-tech-pill {
+            background-color: var(--badge-bg) !important;
+            color: var(--primary) !important;
+            border: 1px solid rgba(var(--primary-rgb), 0.2);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="scroll-progress"></div>
+
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-3" href="#"><span style="color: var(--primary)">H</span>amza.</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle Navigation">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+                        <button id="theme-toggle" class="btn btn-outline-custom rounded-circle p-0" style="width: 42px; height: 42px; display:flex; align-items:center; justify-content:center;" aria-label="Toggle Theme Mode">
+                            <i class="fa-solid fa-sun"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="hero" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-7" data-aos="fade-right">
+                    <h5 class="text-uppercase mb-3 fw-semibold" style="color: var(--primary); letter-spacing: 2px;">Welcome to my Portfolio</h5>
+                    <h1 class="display-3 fw-bold mb-3">Hi, I'm <span class="text-gradient">Hamza Aziz</span></h1>
+                    <h3 class="h2 mb-4 fw-medium text-muted">I am a <span id="typing-text" style="color: var(--primary);"></span></h3>
+                    <p class="lead mb-5">Building scalable web applications with Laravel, PHP, JavaScript, and WordPress.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#contact" class="btn btn-custom px-4 py-3">Hire Me</a>
+                        <a href="#projects" class="btn btn-outline-custom px-4 py-3">View Projects</a>
+                        <a href="./assets/hamza_aziz_resume/Hamza_Aziz_CV.pdf" class="btn btn-outline-custom px-4 py-3"><i class="fa-solid fa-download me-2"></i>Download Resume</a>
+                    </div>
+                </div>
+                <div class="col-lg-5 text-center" data-aos="fade-left">
+                    <div class="hero-img-wrapper">
+                        <img src="./assets/imgs/profile.png" alt="Hamza Aziz Headshot" width="360" height="460" class="hero-img img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-3 col-6 text-center" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="glass-card p-4">
+                        <h2 class="display-5 fw-bold mb-2" style="color: var(--primary);"><span class="counter" data-target="20">0</span>+</h2>
+                        <p class="text-muted mb-0">Projects Completed</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 text-center" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="glass-card p-4">
+                        <h2 class="display-5 fw-bold mb-2" style="color: var(--primary);"><span class="counter" data-target="15">0</span>+</h2>
+                        <p class="text-muted mb-0">Happy Clients</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 text-center" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="glass-card p-4">
+                        <h2 class="display-5 fw-bold mb-2" style="color: var(--primary);"><span class="counter" data-target="3">0</span>+</h2>
+                        <p class="text-muted mb-0">Years Experience</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 text-center" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="glass-card p-4">
+                        <h2 class="display-5 fw-bold mb-2" style="color: var(--primary);"><span class="counter" data-target="15">0</span>+</h2>
+                        <p class="text-muted mb-0">Technologies Used</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-5 my-5">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h2 class="section-title text-start">About <span>Me</span></h2>
+
+                    <h4 class="mb-4">
+                        Full Stack Web Developer specializing in Laravel, PHP, and modern web solutions.
+                    </h4>
+
+                    <p class="text-muted mb-4">
+                        I'm Hamza Aziz, a passionate Web Developer with hands-on experience in building
+                        dynamic, secure, and scalable web applications. My expertise includes Laravel,
+                        PHP, JavaScript, jQuery, Bootstrap, MySQL, WordPress, and RESTful API integration.
+                    </p>
+
+                    <p class="text-muted mb-4">
+                        I enjoy transforming complex business requirements into efficient digital
+                        solutions. From authentication systems and admin dashboards to custom CRM,
+                        eCommerce platforms, and database-driven applications, I focus on writing clean,
+                        maintainable code and delivering reliable user experiences.
+                    </p>
+
+                    <div class="glass-card p-4 d-flex align-items-center gap-3">
+                        <i class="fa-solid fa-code-merge fa-2x" style="color: var(--primary)"></i>
+                        <div>
+                            <h6 class="mb-1 fw-bold">Backend-Focused Problem Solver</h6>
+                            <p class="text-muted small mb-0">
+                                Building robust Laravel applications, optimizing databases, integrating APIs,
+                                and creating scalable solutions that solve real-world business challenges.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="glass-card p-4">
+                        <h4 class="mb-4 text-center">Core Competencies</h4>
+                        <div class="p-3 border-bottom border-secondary border-opacity-10 d-flex justify-content-between align-items-center">
+                            <span><i class="fa-brands fa-laravel me-2 text-danger"></i> Custom Laravel Applications</span>
+                            <span class="badge custom-badge">Expert</span>
+                        </div>
+                        <div class="p-3 border-bottom border-secondary border-opacity-10 d-flex justify-content-between align-items-center">
+                            <span><i class="fa-solid fa-gears me-2 text-success"></i> CRM & Business Systems Development</span>
+                            <span class="badge custom-badge">Advanced</span>
+                        </div>
+                        <div class="p-3 border-bottom border-secondary border-opacity-10 d-flex justify-content-between align-items-center">
+                            <span><i class="fa-solid fa-server me-2 text-info"></i> REST API Development</span>
+                            <span class="badge custom-badge">Advanced</span>
+                        </div>
+                        <div class="p-3 border-bottom border-secondary border-opacity-10 d-flex justify-content-between align-items-center">
+                            <span><i class="fa-solid fa-database me-2 text-warning"></i> Database Architecture & Tuning</span>
+                            <span class="badge custom-badge">Advanced</span>
+                        </div>
+                        <div class="p-3 border-bottom border-secondary border-opacity-10 d-flex justify-content-between align-items-center">
+                            <span><i class="fa-solid fa-code me-2 text-success"></i> AJAX & jQuery Development</span>
+                            <span class="badge custom-badge">Advanced</span>
+                        </div>
+
+                        <div class="p-3 border-bottom border-secondary border-opacity-10 d-flex justify-content-between align-items-center">
+                            <span><i class="fa-brands fa-bootstrap me-2" style="color:#7952B3;"></i> Responsive UI with Bootstrap</span>
+                            <span class="badge custom-badge">Advanced</span>
+                        </div>
+                        <div class="p-3 d-flex justify-content-between align-items-center">
+                            <span><i class="fa-brands fa-wordpress me-2 text-primary"></i> WordPress Development</span>
+                            <span class="badge custom-badge">Fluent</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-5 my-5">
+        <div class="container">
+            <h2 class="section-title">Skills & <span>Ecosystem</span></h2>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="glass-card p-4 h-100">
+                        <h4 class="mb-4 text-gradient"><i class="fa-solid fa-gears me-2"></i>Backend</h4>
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-3">
+                                <div class="d-flex justify-content-between small mb-1"><span>Laravel</span><span>95%</span></div>
+                                <div class="progress" style="height: 6px;"><div class="progress-bar" style="width: 95%; background-color: var(--primary);"></div></div>
+                            </li>
+                            <li class="mb-3">
+                                <div class="d-flex justify-content-between small mb-1"><span>PHP</span><span>90%</span></div>
+                                <div class="progress" style="height: 6px;"><div class="progress-bar" style="width: 90%; background-color: var(--primary);"></div></div>
+                            </li>
+                            <li class="mb-3">
+                                <div class="d-flex justify-content-between small mb-1"><span>MySQL</span><span>88%</span></div>
+                                <div class="progress" style="height: 6px;"><div class="progress-bar" style="width: 88%; background-color: var(--primary);"></div></div>
+                            </li>
+                            <li>
+                                <div class="d-flex justify-content-between small mb-1"><span>REST APIs</span><span>92%</span></div>
+                                <div class="progress" style="height: 6px;"><div class="progress-bar" style="width: 92%; background-color: var(--primary);"></div></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="glass-card p-4 h-100">
+                        <h4 class="mb-4 text-gradient"><i class="fa-solid fa-laptop-code me-2"></i>Frontend</h4>
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-3">
+                                <div class="d-flex justify-content-between small mb-1"><span>HTML5 / CSS3</span><span>90%</span></div>
+                                <div class="progress" style="height: 6px;"><div class="progress-bar" style="width: 90%; background-color: var(--primary);"></div></div>
+                            </li>
+                            <li class="mb-3">
+                                <div class="d-flex justify-content-between small mb-1"><span>Bootstrap</span><span>95%</span></div>
+                                <div class="progress" style="height: 6px;"><div class="progress-bar" style="width: 95%; background-color: var(--primary);"></div></div>
+                            </li>
+                            <li class="mb-3">
+                                <div class="d-flex justify-content-between small mb-1"><span>JavaScript</span><span>85%</span></div>
+                                <div class="progress" style="height: 6px;"><div class="progress-bar" style="width: 85%; background-color: var(--primary);"></div></div>
+                            </li>
+                            <li>
+                                <div class="d-flex justify-content-between small mb-1"><span>jQuery / AJAX</span><span>90%</span></div>
+                                <div class="progress" style="height: 6px;"><div class="progress-bar" style="width: 90%; background-color: var(--primary);"></div></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="glass-card p-4 h-100">
+                        <h4 class="mb-4 text-gradient">
+                            <i class="fa-solid fa-layer-group me-2"></i>
+                            Platforms
+                        </h4>
+
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-3">
+                                <div class="d-flex justify-content-between small mb-1">
+                                    <span>WordPress</span>
+                                    <span>90%</span>
+                                </div>
+                                <div class="progress" style="height: 6px;">
+                                    <div class="progress-bar" style="width: 90%; background-color: var(--primary);"></div>
+                                </div>
+                            </li>
+                            <li class="mb-3">
+                                <div class="d-flex justify-content-between small mb-1">
+                                    <span>Custom Admin Panels</span>
+                                    <span>95%</span>
+                                </div>
+                                <div class="progress" style="height: 6px;">
+                                    <div class="progress-bar" style="width: 95%; background-color: var(--primary);"></div>
+                                </div>
+                            </li>
+
+                            <li class="mb-3">
+                                <div class="d-flex justify-content-between small mb-1">
+                                    <span>Authentication Systems</span>
+                                    <span>92%</span>
+                                </div>
+                                <div class="progress" style="height: 6px;">
+                                    <div class="progress-bar" style="width: 92%; background-color: var(--primary);"></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="glass-card p-4 h-100">
+                        <h4 class="mb-4 text-gradient"><i class="fa-solid fa-screwdriver-wrench me-2"></i>Tools</h4>
+                        <div class="d-flex flex-wrap gap-2 pt-2">
+                            <span class="badge custom-badge text-white">Git</span>
+                            <span class="badge custom-badge text-white">GitHub</span>
+                            <span class="badge custom-badge text-white">Laragon</span>
+                            <span class="badge custom-badge text-white">VS Code</span>
+                            <span class="badge custom-badge text-white">MySQL</span>
+                            <span class="badge custom-badge text-white">phpMyAdmin</span>
+                            <span class="badge custom-badge text-white">Composer</span>
+                            <span class="badge custom-badge text-white">NPM</span>
+                            <span class="badge custom-badge text-white">cPanel</span>
+                            <span class="badge custom-badge text-white">Cloudflare</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ai-development" class="py-5 my-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="badge custom-badge mb-3"><i class="fa-solid fa-wand-magic-sparkles me-2"></i>AI Enhanced Developer</span>
+                <h2 class="section-title mb-2">AI-Powered <span>Development</span></h2>
+                <p class="section-subtitle text-muted">Leveraging modern AI tools to build faster, smarter, and more efficient digital solutions.</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="glass-card ai-card p-4 h-100 d-flex flex-column">
+                        <div class="ai-icon-box">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">AI-Assisted Development</h5>
+                        <p class="text-muted small mb-0">Utilizing artificial intelligence models to significantly speed up complex coding tasks, bug resolution, and architecture optimization while strictly maintaining clean, maintainable, and enterprise-scalable code bases.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="glass-card ai-card p-4 h-100 d-flex flex-column">
+                        <div class="ai-icon-box">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">AI Coding Assistants</h5>
+                        <p class="text-muted small mb-3">Professionally applying advanced tooling ecosystems to maximize engineering speed, documentation parity, and structural logic review:</p>
+                        <div class="d-flex flex-wrap gap-2 mb-3">
+                            <span class="badge ai-tech-pill">Gemini</span>
+                            <span class="badge ai-tech-pill">Claude AI</span>
+                            <span class="badge ai-tech-pill">ChatGPT</span>
+                            <span class="badge ai-tech-pill">GitHub Copilot</span>
+                        </div>
+                        <ul class="list-unstyled text-muted small mb-0 ps-0">
+                            <li class="mb-1"><i class="fa-solid fa-circle-check text-success me-2"></i>Rapid code generation & validation</li>
+                            <li class="mb-1"><i class="fa-solid fa-circle-check text-success me-2"></i>Deep logic refactoring & debugging</li>
+                            <li class="mb-1"><i class="fa-solid fa-circle-check text-success me-2"></i>Automated documentation coverage</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="glass-card ai-card p-4 h-100 d-flex flex-column">
+                        <div class="ai-icon-box">
+                            <i class="fa-solid fa-network-wired"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">AI Integration</h5>
+                        <p class="text-muted small mb-0">Building intelligent layers within modern consumer platforms, including context-aware chat assistants, multi-model API communication workflows, predictive smart search algorithms, automated support responses, and dynamic data-generation features.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="glass-card ai-card p-4 h-100 d-flex flex-column">
+                        <div class="ai-icon-box">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">AI + Laravel Systems</h5>
+                        <p class="text-muted small mb-0">Merging backend structural integrity with artificial intelligence capability by deploying robust PHP SDK wrappers, building autonomous task schedules, and creating intelligent custom dashboard layouts capable of processing AI insights smoothly.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                    <div class="glass-card ai-card p-4 h-100 d-flex flex-column">
+                        <div class="ai-icon-box">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">AI Productivity Workflow</h5>
+                        <p class="text-muted small mb-0">Optimizing initial project initialization cycles by leveraging predictive modeling for project requirements mapping, exploring diverse structural relational database mockups, and handling edge-case validation scripts to shrink time-to-market metrics.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-5 my-5">
+        <div class="container">
+            <h2 class="section-title">Professional <span>Services</span></h2>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="glass-card p-4 h-100">
+                        <i class="fa-brands fa-laravel fa-2x mb-3" style="color: var(--primary);"></i>
+                        <h5 class="fw-bold mb-3">Custom Laravel Development</h5>
+                        <p class="text-muted small mb-0">Developing robust backends using secure, scalable, enterprise-grade architecture tailored perfectly to your workflows.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="glass-card p-4 h-100">
+                        <i class="fa-solid fa-cloud-arrow-down fa-2x mb-3" style="color: var(--primary);"></i>
+                        <h5 class="fw-bold mb-3">REST API Development</h5>
+                        <p class="text-muted small mb-0">Structuring fast, secure JSON endpoints built with strict token verification mechanics.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="glass-card p-4 h-100">
+                        <i class="fa-solid fa-gauge-high fa-2x mb-3" style="color: var(--primary);"></i>
+                        <h5 class="fw-bold mb-3">Admin Panels & Dashboards</h5>
+                        <p class="text-muted small mb-0">Architecting analytic interfaces with detailed logging paradigms, roles, and modular permissions.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="glass-card p-4 h-100">
+                        <i class="fa-brands fa-wordpress fa-2x mb-3" style="color: var(--primary);"></i>
+                        <h5 class="fw-bold mb-3">WordPress Development</h5>
+                        <p class="text-muted small mb-0">Developing responsive corporate systems, custom templates, and dynamic plug-in layers.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="glass-card p-4 h-100">
+                        <i class="fa-solid fa-database fa-2x mb-3" style="color: var(--primary);"></i>
+                        <h5 class="fw-bold mb-3">Database Design</h5>
+                        <p class="text-muted small mb-0">Schema optimization, database mapping, and query caching configurations for massive datasets.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="glass-card p-4 h-100">
+                        <i class="fa-solid fa-bug-slash fa-2x mb-3" style="color: var(--primary);"></i>
+                        <h5 class="fw-bold mb-3">Bug Fixing & Performance</h5>
+                        <p class="text-muted small mb-0">Profiling code runtime errors, auditing security settings, and refactoring old systems cleanly.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-5 my-5">
+        <div class="container">
+
+            <h2 class="section-title">Featured <span>Projects</span></h2>
+            <p class="section-subtitle text-center mb-5">
+                Enterprise applications, AI-powered solutions, booking systems,
+                CMS platforms, tracking systems, and business automation projects
+                developed using Laravel, PHP, MySQL, JavaScript, Bootstrap, and AI tools.
+            </p>
+
+            <div class="row g-4 project-container">
+
+                <!-- SPMS Project -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="glass-card overflow-hidden h-100 d-flex flex-column">
+
+                        <div style="height: 200px; position: relative; overflow: hidden;">
+
+                            <img src="./assets/imgs/spms-project.png"
+                                    alt="SPMS - Smart Property Management System"
+                                    class="w-100 h-100 object-fit-cover">
+
+                            <span class="badge position-absolute top-3 end-3 custom-badge">
+                                Laravel | AI
+                            </span>
+
+                        </div>
+
+                        <div class="p-4 flex-grow-1 d-flex flex-column">
+
+                            <h5 class="fw-bold mb-2">
+                                Smart Property Management System (SPMS)
+                            </h5>
+
+                            <p class="text-muted small mb-4 flex-grow-1">
+                                A Chinese Laravel-powered property management platform that enables
+                                users to add buildings, manage rental properties, upload and
+                                share listings, edit property images, and leverage AI-powered
+                                image enhancement for improved property presentation and
+                                marketing.
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sky CMS -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="glass-card overflow-hidden h-100 d-flex flex-column">
+
+                        <div style="height: 200px; position: relative; overflow: hidden;">
+
+                            <img src="./assets/imgs/sky-project.png"
+                                alt="Sky CMS"
+                                class="w-100 h-100 object-fit-cover">
+
+                            <div class="position-absolute top-0 start-0 w-100 h-100"
+                                style="background: rgba(0,0,0,0.25);"></div>
+
+                            <span class="badge position-absolute top-3 end-3 custom-badge">
+                                Laravel | Booking System
+                            </span>
+
+                        </div>
+
+                        <div class="p-4 flex-grow-1 d-flex flex-column">
+
+                            <h5 class="fw-bold mb-2">
+                                Sky Helicopter Tour (CMS)
+                            </h5>
+
+                            <p class="text-muted small mb-4 flex-grow-1">
+                                A comprehensive helicopter tour booking and flight management
+                                platform built with Laravel. The system enables online flight
+                                reservations, passenger management, pilot scheduling, tour
+                                operations, secure payment processing, tip collection,
+                                vendor profit tracking, commission management, and real-time
+                                booking administration through a centralized dashboard.
+                            </p>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Source Flow Project -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="glass-card overflow-hidden h-100 d-flex flex-column">
+
+                        <div style="height: 200px; position: relative; overflow: hidden;">
+                            <img src="assets/imgs/sf-project.png"
+                                alt="Source Flow"
+                                class="w-100 h-100 object-fit-cover">
+
+                            <span class="badge position-absolute top-3 end-3 custom-badge">
+                                Laravel | Admin Panel
+                            </span>
+                        </div>
+
+                        <div class="p-4 flex-grow-1 d-flex flex-column">
+
+                            <h5 class="fw-bold mb-2">
+                                Source Flow
+                            </h5>
+
+                            <p class="text-muted small mb-4 flex-grow-1">
+                                A Laravel-based business management platform designed to help administrators
+                                manage product sourcing, purchasing operations, sales activities, supplier
+                                records, Amazon pricing analysis, and workflow processes from a centralized
+                                dashboard. The system streamlines daily operations through automation,
+                                reporting tools, and efficient data management.
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Asian Promotion -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="glass-card overflow-hidden h-100 d-flex flex-column">
+
+                        <div style="height: 200px; position: relative; overflow: hidden;">
+
+                            <img src="./assets/imgs/asian-promotion-project.png"
+                                alt="Asian Promotion"
+                                class="w-100 h-100 object-fit-cover">
+
+                            <div class="position-absolute top-0 start-0 w-100 h-100"
+                                style="background: rgba(0,0,0,0.25);"></div>
+
+                            <span class="badge position-absolute top-3 end-3 custom-badge">
+                                Laravel | SEO CMS
+                            </span>
+
+                        </div>
+
+                        <div class="p-4 flex-grow-1 d-flex flex-column">
+
+                            <h5 class="fw-bold mb-2">
+                                Asian Promotion
+                            </h5>
+
+                            <p class="text-muted small mb-4 flex-grow-1">
+                                A custom Laravel-powered business website featuring a dynamic
+                                product catalog, advanced SEO management, and a fully
+                                configurable admin panel. Administrators can manage products,
+                                update page content, modify SEO metadata, and customize dynamic
+                                page titles across the entire platform without code changes.
+                            </p>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!-- Tiffinly Lost & Found System -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="glass-card overflow-hidden h-100 d-flex flex-column">
+
+                        <div style="height: 200px; position: relative; overflow: hidden;">
+
+                            <img src="./assets/imgs/tiflin-project.png"
+                                alt="Tiffinly Lost & Found"
+                                class="w-100 h-100 object-fit-cover">
+
+                            <div class="position-absolute top-0 start-0 w-100 h-100"
+                                style="background: rgba(0,0,0,0.25);"></div>
+
+                            <span class="badge position-absolute top-3 end-3 custom-badge">
+                                Laravel | Tracking System
+                            </span>
+
+                        </div>
+
+                        <div class="p-4 flex-grow-1 d-flex flex-column">
+
+                            <h5 class="fw-bold mb-2">
+                                Tiffilin Lost & Found System
+                            </h5>
+
+                            <p class="text-muted small mb-4 flex-grow-1">
+                                A Laravel-based item recovery platform that uses unique tracking
+                                tags attached to personal belongings. Users can report lost items
+                                using their tag number, while found items can be registered by
+                                others through the system. The platform matches lost and found
+                                records, helping owners recover their belongings efficiently
+                                through a centralized tracking process.
+                            </p>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!-- Live-Tech CMS -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="glass-card overflow-hidden h-100 d-flex flex-column">
+
+                        <div style="height: 200px; position: relative; overflow: hidden;">
+
+                            <img src="./assets/imgs/ltcms-project.png"
+                                alt="Live-Tech CMS"
+                                class="w-100 h-100 object-fit-cover">
+
+                            <div class="position-absolute top-0 start-0 w-100 h-100"
+                                style="background: rgba(0,0,0,0.25);"></div>
+
+                            <span class="badge position-absolute top-3 end-3 custom-badge">
+                                Laravel | Enterprise CMS
+                            </span>
+
+                        </div>
+
+                        <div class="p-4 flex-grow-1 d-flex flex-column">
+
+                            <h5 class="fw-bold mb-2">
+                                Live-Tech CMS (LTCMS)
+                            </h5>
+
+                            <p class="text-muted small mb-4 flex-grow-1">
+                                Contributed as a Laravel Developer to a large-scale business
+                                management and customer support platform featuring helpdesk
+                                ticketing, customer management, subscriptions, billing
+                                operations, product management, asset tracking, reporting,
+                                knowledge base modules, and workflow automation. Built and
+                                enhanced scalable backend features, admin tools, APIs, and
+                                user-facing modules within a complex enterprise environment.
+                            </p>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="py-5 my-5">
+        <div class="container">
+            <h2 class="section-title">Experience <span>Timeline</span></h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8" data-aos="fade-up">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <h4 class="fw-bold">Web Development Journey</h4>
+                            <h6 style="color: var(--primary);">Frontend & Backend Foundations | 2023</h6>
+                            <p class="text-muted small">
+                                Started building responsive websites using HTML, CSS, Bootstrap, JavaScript, and PHP. Developed a strong understanding of web architecture, databases, and dynamic user interfaces.
+                            </p>
+                        </div>
+
+                        <div class="timeline-item">
+                            <h4 class="fw-bold">WordPress Development</h4>
+                            <h6 style="color: var(--primary);">Custom Websites & CMS Solutions | 2023 - 2024</h6>
+                            <p class="text-muted small">
+                                Built and customized WordPress websites, implemented theme modifications, managed content structures, and optimized website performance for business clients.
+                            </p>
+                        </div>
+
+                        <div class="timeline-item">
+                            <h4 class="fw-bold">Laravel Development</h4>
+                            <h6 style="color: var(--primary);">Backend Applications & APIs | 2024 - 2025</h6>
+                            <p class="text-muted small">
+                                Developed secure Laravel applications, authentication systems, admin dashboards, REST APIs, database relationships, and business process automation solutions.
+                            </p>
+                        </div>
+
+                        <div class="timeline-item">
+                            <h4 class="fw-bold">Full Stack Web Developer</h4>
+                            <h6 style="color: var(--primary);">Scalable Web Solutions | 2025 - Present</h6>
+                            <p class="text-muted small">
+                                Delivering complete web solutions including Laravel backends, responsive frontends, API integrations, database optimization, and cloud deployment workflows.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-5 my-5">
+        <div class="container">
+            <h2 class="section-title">Contact <span>Me</span></h2>
+            <p class="section-subtitle text-muted">Let's discuss your next project, collaboration, freelance work, or full-time opportunity. Feel free to connect through any platform below.</p>
+            
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
+                <!-- LinkedIn -->
+                <div class="col" data-aos="fade-up" data-aos-delay="100">
+                    <div class="glass-card p-4 h-100 d-flex flex-column align-items-start">
+                        <div class="connect-icon-box">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </div>
+                        <h4 class="fw-bold mb-2">LinkedIn</h4>
+                        <p class="text-muted small mb-4 flex-grow-1">
+                            Professional networking, collaborations, and career opportunities.
+                        </p>
+                        <a href="https://www.linkedin.com/in/hamza-aziz-986bb8231/" target="_blank" class="btn btn-custom w-100 mt-auto">
+                            Connect on LinkedIn
+                        </a>
+                    </div>
+                </div>
+
+                <!-- GitHub -->
+                <div class="col" data-aos="fade-up" data-aos-delay="200">
+                    <div class="glass-card p-4 h-100 d-flex flex-column align-items-start">
+                        <div class="connect-icon-box">
+                            <i class="fa-brands fa-github"></i>
+                        </div>
+                        <h4 class="fw-bold mb-2">GitHub</h4>
+                        <p class="text-muted small mb-4 flex-grow-1">
+                            Explore my Laravel projects, code samples, and repositories.
+                        </p>
+                        <a href="https://github.com/hamza11726" target="_blank" class="btn btn-outline-custom w-100 mt-auto">
+                            View GitHub
+                        </a>
+                    </div>
+                </div>
+
+                <!-- WhatsApp -->
+                <div class="col" data-aos="fade-up" data-aos-delay="300">
+                    <div class="glass-card p-4 h-100 d-flex flex-column align-items-start">
+                        <div class="connect-icon-box">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </div>
+                        <h4 class="fw-bold mb-2">WhatsApp</h4>
+                        <p class="text-muted small mb-4 flex-grow-1">
+                            Fastest way to discuss projects, support, and business inquiries.
+                        </p>
+                        <a href="https://wa.me/923097811726?text=Hello%20Hamza,%20I%20visited%20your%20portfolio.%20I%20would%20like%20to%20discuss%20a%20potential%20opportunity%20with%20you.%20Please%20share%20your%20availability%20and%20details."
+                        target="_blank" 
+                        class="btn btn-custom w-100 mt-auto">
+                            Chat on WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Facebook -->
+                <div class="col" data-aos="fade-up" data-aos-delay="400">
+                    <div class="glass-card p-4 h-100 d-flex flex-column align-items-start">
+                        <div class="connect-icon-box">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </div>
+                        <h4 class="fw-bold mb-2">Facebook</h4>
+                        <p class="text-muted small mb-4 flex-grow-1">
+                            Connect with me and stay updated on my latest work.
+                        </p>
+                        <a href="https://www.facebook.com/profile.php?id=100012113325668" target="_blank" class="btn btn-outline-custom w-100 mt-auto">
+                            Visit Facebook
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="col" data-aos="fade-up" data-aos-delay="500">
+                    <div class="glass-card p-4 h-100 d-flex flex-column align-items-start">
+                        <div class="connect-icon-box">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <h4 class="fw-bold mb-2">Email</h4>
+                        <p class="text-muted small mb-4 flex-grow-1">
+                            For project discussions, freelance opportunities, and business inquiries.
+                        </p>
+                        <a href="mailto:ha4319151@gmail.com?subject=Hiring%20Opportunity&body=Hello%20Hamza,%0A%0AI%20visited%20your%20portfolio.%20I%20would%20like%20to%20discuss%20a%20potential%20opportunity%20with%20you.%0A%0APlease%20share%20your%20availability%20and%20details."
+                        class="btn btn-custom w-100 mt-auto">
+                            Send Email
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Phone -->
+                <div class="col" data-aos="fade-up" data-aos-delay="600">
+                    <div class="glass-card p-4 h-100 d-flex flex-column align-items-start">
+                        <div class="connect-icon-box">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <h4 class="fw-bold mb-2">Phone</h4>
+                        <p class="text-muted small mb-4 flex-grow-1">
+                            Available for direct communication regarding projects and collaborations.
+                        </p>
+                        <a href="tel:+923097811726" class="btn btn-outline-custom w-100 mt-auto">
+                            Call Now
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-4 border-top border-secondary border-opacity-10 mt-5">
+        <div class="container text-center">
+            <p class="text-muted small mb-0">&copy; 2026 Hamza Aziz. Designed with strict accessibility and contrast parameters.</p>
+        </div>
+    </footer>
+
+    <button id="back-to-top" title="Go to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // Loading Animations Handler
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            preloader.style.opacity = '0';
+            setTimeout(() => preloader.style.display = 'none', 500);
+            AOS.init({ duration: 1000, once: true });
+            runCounterAnimation();
+        });
+
+        // Typing Effect Mechanics
+        const typedTextSpan = document.getElementById("typing-text");
+        const textArray = ["Full Stack Laravel Developer", "REST API Engineer", "Database Architect"];
+        let arrayIndex = 0, charIndex = 0;
+
+        function type() {
+            if (charIndex < textArray[arrayIndex].length) {
+                typedTextSpan.textContent += textArray[arrayIndex].charAt(charIndex);
+                charIndex++;
+                setTimeout(type, 100);
+            } else {
+                setTimeout(erase, 2000);
+            }
+        }
+
+        function erase() {
+            if (charIndex > 0) {
+                typedTextSpan.textContent = textArray[arrayIndex].substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(erase, 50);
+            } else {
+                arrayIndex = (arrayIndex + 1) % textArray.length;
+                setTimeout(type, 500);
+            }
+        }
+        document.addEventListener("DOMContentLoaded", () => setTimeout(type, 1000));
+
+        // Interactive Project Filtering Logic
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectItems = document.querySelectorAll('.project-item');
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filterValue = btn.getAttribute('data-filter');
+
+                projectItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-tech') === filterValue) {
+                        item.style.display = 'block';
+                        setTimeout(() => item.style.opacity = '1', 50);
+                    } else {
+                        item.style.opacity = '0';
+                        setTimeout(() => item.style.display = 'none', 300);
+                    }
+                });
+            });
+        });
+
+        // Statistics Counter Animation module
+        function runCounterAnimation() {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const increment = target / 50;
+                const updateCounter = () => {
+                    const c = +counter.innerText;
+                    if (c < target) {
+                        counter.innerText = Math.ceil(c + increment);
+                        setTimeout(updateCounter, 30);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCounter();
+            });
+        }
+
+        // Compliant Dark/Light Mode Engine Switches
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const targetTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', targetTheme);
+            themeToggle.innerHTML = targetTheme === 'light' ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+        });
+
+        // Global Scroll Monitors
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            const scrollProgress = document.getElementById('scroll-progress');
+            const btt = document.getElementById('back-to-top');
+            
+            // Scroll Progress Calculation
+            const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+            if (totalScroll > 0) {
+                scrollProgress.style.width = `${(window.scrollY / totalScroll) * 100}%`;
+            }
+
+            // Back to top Visibility trigger
+            if (window.scrollY > 400) { btt.style.display = "block"; } else { btt.style.display = "none"; }
+        });
+
+        document.getElementById('back-to-top').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
